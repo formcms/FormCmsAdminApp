@@ -16,6 +16,7 @@ export const cnComponentConfig: ComponentConfig = {
         reject:'取消'
     },
     assetLabels: {
+        progress:'进度',
         path: '路径',
         url: '链接',
         name: '名称',
