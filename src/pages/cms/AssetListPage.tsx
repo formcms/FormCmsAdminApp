@@ -7,6 +7,10 @@ import {
 import {XEntity} from "../../../libs/FormCmsAdminSdk";
 import {getDefaultComponentConfig} from "../../getDefaultComponentConfig";
 import {cnComponentConfig} from "../../types/cnComponentConfig";
+import {Button} from "primereact/button";
+import {Dialog} from "primereact/dialog";
+import {useState} from "react";
+import {ChunkUpload} from "./components/ChunkUpload";
 
 const cnPageConfig: AssetListPageConfig = {
     deleteConfirm(label: string | undefined): string {
@@ -21,14 +25,17 @@ const cnPageConfig: AssetListPageConfig = {
 const languageConfig = {
     en: {
         header: 'Asset List',
+        chunkedUpload: 'Upload Large File',
     },
     cn: {
         header: '资料列表',
+        chunkedUpload: '上传大文件'
     }
 }
 
 export function AssetListPage({schema, baseRouter}: { schema: XEntity, baseRouter: string }) {
     const lan = useLanguage();
+    const labels = languageConfig[lan];
 
     const {displayMode, displayModeOptions, setDisplayMode, AssetListPageMain} =
         useAssetListPage(
@@ -39,7 +46,8 @@ export function AssetListPage({schema, baseRouter}: { schema: XEntity, baseRoute
         );
 
     const [_, setHeader] = useGlobalState<string>( GlobalStateKeys.Header, '');
-    setHeader(languageConfig[lan].header);
+    setHeader(labels.header);
+    const [showChunkUpload,setShowChunkUpload] = useState(false)
 
     return <>
         <br/>
@@ -49,7 +57,11 @@ export function AssetListPage({schema, baseRouter}: { schema: XEntity, baseRoute
                 onChange={(e: SelectButtonChangeEvent) => setDisplayMode(e.value)}
                 options={displayModeOptions}
             />
+            <Button label={labels.chunkedUpload} onClick={() => setShowChunkUpload(true)}/>
         </div>
         <AssetListPageMain/>
+        <Dialog onHide={()=>setShowChunkUpload(false)} visible={showChunkUpload}>
+            <ChunkUpload/>
+        </Dialog>
     </>
 }
