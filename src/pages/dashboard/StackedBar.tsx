@@ -30,6 +30,7 @@ export function StackedBar(
             documentStyle.getPropertyValue('--green-500'),
             documentStyle.getPropertyValue('--yellow-500'),
             documentStyle.getPropertyValue('--grey-500'),
+            documentStyle.getPropertyValue('--purple-500') // New color added
         ];
         const datasets = yData && yData.map((item, idx) => ({
             type: 'bar',
