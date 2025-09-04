@@ -9,18 +9,22 @@ const languageConfig = {
         taskList: "Task list",
         addExportTask: "Add Export Task",
         addImportTask: "Add Import Task",
+        addEmitMessageTask: "Emit Messages",
         importDemoData: "Import Demo Data"
     },
     cn: {
         taskList: "任务列表",
         addExportTask: "添加导出任务",
         addImportTask: "添加导入任务",
-        importDemoData: "导入演示数据"
+        importDemoData: "导入演示数据",
+        addEmitMessageTask: "触发消息",
     }
 };
 
 // Chinese-specific page configuration
 const cnPageConfig: TaskListPageConfig = {
+    emitMsgDialogHeader: "触发消息",
+    submitEmitMessageLabel: "提交",
     archiveSuccess: "归档成功",
     exportSuccess: "导出成功",
     importSuccess: "导入成功",
@@ -45,6 +49,7 @@ export function TaskListPage({ schema }: { schema: XEntity; baseRouter: string }
         handleAddExportTask,
         handleAddImportTask,
         handleImportDemoData,
+        handleAddEmitMessageTask,
         TaskListMain,
         CheckErrorStatus
     } = useTaskListPage(
@@ -62,7 +67,8 @@ export function TaskListPage({ schema }: { schema: XEntity; baseRouter: string }
             {layout !== 'sidebar' ? <h2>{langTexts.taskList}</h2> : <br />}
             <Button onClick={handleAddExportTask}>{langTexts.addExportTask}</Button>{' '}
             <Button onClick={handleAddImportTask}>{langTexts.addImportTask}</Button>{' '}
-            <Button onClick={handleImportDemoData}>{langTexts.importDemoData}</Button>
+            <Button onClick={handleImportDemoData}>{langTexts.importDemoData}</Button>{' '}
+            <Button onClick={handleAddEmitMessageTask}>{langTexts.addEmitMessageTask}</Button>
             <CheckErrorStatus />
             <TaskListMain />
         </>
