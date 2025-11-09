@@ -38,7 +38,8 @@ const cnPageConfig: TaskListPageConfig = {
         createdBy: '创建人',
         progress: '进度',
         error: '错误',
-        updatedAt: '更新时间'
+        updatedAt: '更新时间',
+        taskSettings:'任务设置'
     }
 };
 
