@@ -17,7 +17,7 @@ export function DashboardPage() {
     const [_, setHeader] = useGlobalState<string>(GlobalStateKeys.Header, '');
     setHeader(lanText.header);
     const {pastDays, activities, dataActions, visits, pageData, pageNames} = useDashboardPage(6)
-
+    console.log({activities})
     return <div className="grid">
         <div className="col-6 p-4">
             <StackedBar header={'Daily Visits'} xLabels={pastDays} yData={visits}/>

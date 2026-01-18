@@ -1,5 +1,5 @@
 import { Button } from "primereact/button";
-import {GlobalStateKeys, useGlobalState, useLanguage, useLayout} from "../../globalState";
+import { GlobalStateKeys, useGlobalState, useLanguage, useLayout } from "../../globalState";
 import { TaskListPageConfig, useTaskListPage, XEntity } from "../../../libs/FormCmsAdminSdk";
 import { getDefaultComponentConfig } from "../../getDefaultComponentConfig";
 
@@ -38,7 +38,8 @@ const cnPageConfig: TaskListPageConfig = {
         createdBy: '创建人',
         progress: '进度',
         error: '错误',
-        updatedAt: '更新时间'
+        updatedAt: '更新时间',
+        taskSettings: '任务设置'
     }
 };
 
@@ -59,7 +60,7 @@ export function TaskListPage({ schema }: { schema: XEntity; baseRouter: string }
     );
 
     const langTexts = languageConfig[lan === 'en' ? 'en' : 'cn'];
-    const [_, setHeader] = useGlobalState<string>( GlobalStateKeys.Header, '');
+    const [_, setHeader] = useGlobalState<string>(GlobalStateKeys.Header, '');
     setHeader(langTexts.taskList);
 
     return (
@@ -67,7 +68,6 @@ export function TaskListPage({ schema }: { schema: XEntity; baseRouter: string }
             {layout !== 'sidebar' ? <h2>{langTexts.taskList}</h2> : <br />}
             <Button onClick={handleAddExportTask}>{langTexts.addExportTask}</Button>{' '}
             <Button onClick={handleAddImportTask}>{langTexts.addImportTask}</Button>{' '}
-            <Button onClick={handleImportDemoData}>{langTexts.importDemoData}</Button>{' '}
             <Button onClick={handleAddEmitMessageTask}>{langTexts.addEmitMessageTask}</Button>
             <CheckErrorStatus />
             <TaskListMain />
